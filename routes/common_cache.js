@@ -45,13 +45,19 @@ exports.getJsonIndexV2 = function(DATA,cachePath,params) {
 
 exports.getPositionInDATAList = function(DATA,inputIndex) 
 {
-	console.log("DEBUG-cache: getPositionInDATAList(inputIndex) "+JSON.stringify(inputIndex));
-	
+//	console.log("DEBUG-cache: getPositionInDATAList(inputIndex) "+JSON.stringify(inputIndex));
+	DATA.sort(function(a,b){
+		if (a.index<b.index) {return -1}
+		else if (a.index == b.index) {return 0}
+		return 1;
+	});
 	var position = _.sortedIndex(DATA,inputIndex,'index');
 	console.log("DEBUG-cache: getPositionInDATAList(inputIndex) "+position);
-	console.log("DEBUG-cache: getPositionInDATAList(inputIndex) "+JSON.stringify(DATA[position]));
+//	console.log("DEBUG-cache: getPositionInDATAList(DATAIndex) "+JSON.stringify(DATA[position]));
 	if (DATA.length <= position) return {position: position, match : false };
-	
+	console.log("DEBUG-cache: getPositionInDATAList(DATAIndex) '"+DATA[position].index+"'");
+	console.log("DEBUG-cache: getPositionInDATAList(inputIndex) '"+inputIndex.index+"'");
+
 	return {position: position, match : DATA[position].index == inputIndex.index};
 }
 
