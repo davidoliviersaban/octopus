@@ -272,7 +272,7 @@ myApp.factory('GroupeServices', function($http) {
 					groupe_classe_list.push({nom : groupe.nom + " "+(groupe_classe_list.length+1) , eleves : [] });
 					eleve.groupe_classe_groupe = groupe_classe_list[groupe_classe_list.length-1].nom
 					// On essaye de sauver l'eleve en base
-					EleveServices.saveData(eleve);
+					//EleveServices.saveData(eleve);
 					groupe_classe_list[groupe_classe_list.length-1].eleves.push(eleve);
 					groupe_eleves.splice(eleve_index,1);
 					if (groupe_classe_list.length >= 5) break;
@@ -290,7 +290,7 @@ myApp.factory('GroupeServices', function($http) {
 						groupe_classe_list.push({nom : groupe.nom + " "+(groupe_classe_list.length+1) , eleves : [] });
 						eleve.groupe_classe_groupe = groupe_classe_list[groupe_classe_list.length-1].nom
 						// On essaye de sauver l'eleve en base
-						EleveServices.saveData(eleve);
+						//EleveServices.saveData(eleve);
 						groupe_classe_list[groupe_classe_list.length-1].eleves.push(eleve);
    						groupe_eleves.splice(eleve_index,1);
 						if (groupe_classe_list.length >= 5) break;
@@ -419,7 +419,7 @@ myApp.factory('GroupeServices', function($http) {
 			best_match.eleve.groupe_classe_groupe = dernierEleveEntre.groupe_classe_groupe;
 			groupe_classe_groupe.eleves.push(best_match.eleve);
 			// On essaye de sauver l'eleve en base
-			EleveServices.saveData(best_match.eleve);
+			//EleveServices.saveData(best_match.eleve);
 		});
 
 		global_groupe.setGlobalGroupe({nom:groupe.nom, groupes:groupe_classe_list});
