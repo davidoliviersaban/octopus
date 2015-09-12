@@ -1,0 +1,58 @@
+extends eleve-bar
+
+block body
+	div(class="wrapper")
+	div(id="container")
+		div(class="wrapper")
+			table(width="100%")
+				tbody
+					td(width="50%")
+						div(class="column")
+							div(class="subnav")
+							form
+								table(width="100%")
+									caption
+										h2 Ajouter un eleve
+									tbody
+										td
+											fieldset
+												input(type="text", ng-model="nom", ng-change="getAllEleves(nom)", placeholder="nom")
+												input(type="text", ng-model="prenom", placeholder="prenom")
+												input(type="text", ng-model="groupe_classe", placeholder="groupe_classe")
+												button(ng-click="createEleve(nom,prenom,groupe_classe)") Creer l'eleve
+
+										td(ng-repeat="local_groupe in groupe")
+											table
+												thead
+													th {{local_groupe.nom}}
+												tbody
+													tr
+														td(ng-repeat="local_groupe_eleve in local_groupe.eleves")
+															label {{local_groupe_eleve.nom}} {{local_groupe_eleve.prenom}}
+
+								table(width="100%")
+									caption
+										h2 Rechercher un eleve
+									tbody
+										td
+											fieldset
+												input(ng-model="nom", ng-change="getAllEleves(nom)", placeholder="Rechercher par nom")
+												label Trier par:
+												select(ng-model="orderProp")
+													option(value="nom") Nom
+													option(value="groupe_classe") Classe
+								button(ng-click="createGroupe()") Creer Groupe
+								table(width="100%")
+									caption
+										h2 Eleves
+									tbody
+										tr
+											label Select All
+												input(type="checkbox", ng-model="selectAll", ng-click="selectAllEleves()")
+										tr(ng-repeat="local_eleve in eleve_list | orderBy:orderProp")
+											td(width="20px")
+												input(type="checkbox", ng-model="select", ng-click="addToGroupe(local_eleve)")
+											td
+												a(ng-href="/eleve-details", ng-click="viewEleveDetails(local_eleve)") <strong>[{{local_eleve.groupe_classe}}] {{local_eleve.nom}}</strong> {{local_eleve.prenom}}
+											td(width="100px")
+												button(ng-click="removeEleve(local_eleve)") Supprimer

@@ -1,0 +1,10 @@
+div(class="wrapper")
+div(class="topbar")
+	div(class="wrapper")
+		div(class="topnav", id="topnav")
+			ul
+				li(id='li-eleve-all')
+					a(id='link-eleve-all', ng-href='/eleve-all') Accueil
+				li(id='li-eleve-details')
+					a(id='link-eleve-details', ng-href='/eleve-details', ng-hide='eleve==null') Info Personnelles
+block body

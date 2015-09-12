@@ -1,0 +1,28 @@
+{
+  "eleves": [{
+    "nom": "NOM1",
+    "prenom": "Prenom1",
+    "classe" : "Classe1",
+    "id" : 1,
+    "compentences": [
+      {
+        "nom": "Competence1",
+        "score": "1",
+        "id" : 1
+      },
+      {
+        "nom": "Competence2",
+        "score": "2",
+        "id" : 2
+      },
+      {
+        "nom": "Competence3",
+        "score": "4",
+        "id" : 3
+      }
+    ]
+  },
+    {
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+extends eleve-bar
+
+block body
+	div(class="wrapper")
+	div(id="container")
+		div(class="wrapper")
+			div(class="content")
+
+				h2 Informations sur le eleve
+				button(id="SAVE", ng-click='saveEleve(eleve)') Enregistrer l'eleve dans la base
+				br
+				br
+				table
+					tr
+					td
+						table(class="none")
+							thead
+							tbody
+								tr
+									td(colspan="2") <h2>fiche d'identite</h2>
+								tr
+									td
+										label NOM:
+									td
+										input(ng-model="eleve.nom", placeholder="nom")
+								tr
+									td
+										label PRENOM:
+									td
+										input(ng-model='eleve.prenom', placeholder="prenom") PRENOM
+								tr
+									td
+										label CLASSE:
+									td
+										input(ng-model="eleve.classe", placeholder="classe")
+								tr
+									td
+										label GROUPE-CLASSE:
+									td
+										input(ng-model="eleve.groupe_classe", placeholder="groupe_classe")
+								tr
+									td
+										label GROUPE:
+									td
+										input(ng-model="eleve.groupe", placeholder="groupe")
+
+								tr
+									td(colspan="2", style="height:2px;") <h2>Commentaires</h2>
+								tr
+									td
+										label Commentaires:
+									td
+										textarea(style="width:100%", rows="10", wrap="soft", ng-model='eleve.commentaires', placeholder="Commentaires ...")
+					td
+						table
+							tbody
+								tr
+									td(colspan="2") <h2>Competences</h2>
+								tr(ng-repeat='local_competence in Competences')
+									td
+										label {{local_competence.nom}}
+									td
+										select(ng-model='local_competence.score')
+											option(ng-repeat='value in [1,2,3,4,5]', value=$value) {{value}}
+										{{local_competence.description}}

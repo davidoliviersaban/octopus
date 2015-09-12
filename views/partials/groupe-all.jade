@@ -1,0 +1,70 @@
+extends groupe-bar
+
+block body
+	div(class="wrapper")
+	div(id="container")
+		div(class="wrapper")
+			table(width="100%")
+				tbody
+					td(width="50%")
+						div(class="column")
+							div(class="subnav")
+								table(style="width:50%")
+									tbody
+										tr
+											td(ng-repeat="local_groupe in groupe.groupes")
+												table
+													thead
+														th {{local_groupe.nom}}
+														th scores
+														th pourquoi
+													tbody
+														tr(ng-repeat="local_groupe_eleve in local_groupe.eleves")
+															td
+																label {{local_groupe_eleve.nom}} {{local_groupe_eleve.prenom}}
+															td
+																[
+																label(ng-repeat="comp in local_groupe_eleve.competences") {{comp.score}}
+																]
+															td
+																label {{local_groupe_eleve.justification}}
+											td
+												table
+													thead
+														th Nom
+														th Scores
+													tbody
+														tr(ng-repeat="local_eleve in groupe_eleve_list")
+															td
+																label {{local_eleve.nom}}
+															td
+																label(ng-repeat="comp in local_eleve.competences") ,{{comp.score}}
+
+							form
+								table(style="width:50%")
+									caption
+										h2 Creation d'un groupes
+										fieldset
+											input(type="text", ng-model="groupe_classe", ng-change="", placeholder="Groupe Classe")
+											input(type="text", ng-model="classe", placeholder="Classe")
+											input(type="text", ng-model="groupe_classe_size", ng-change="defineGroupeClasseSize(groupe_classe_size,groupe_classe)", placeholder="Nombre d'eleves", ng-hide="groupe_classe==null")
+											button(ng-click="createGroupeEtape1()") Former les groupes Etape1
+											button(ng-click="createGroupeEtape2()") Former les groupes Etape2
+											button(ng-click="createGroupe()") Former les groupes sans Etape
+											button(ng-click="saveAllEleves()") <b>Enregistrer les eleves dans la base</b>
+									tbody
+										tr(ng-repeat="eleve in groupe_eleve_list")
+											td
+												input(type="text", ng-model="eleve.nom", ng-change="", placeholder="Nom")
+											td
+												input(type="text", ng-model="eleve.prenom", ng-change="", placeholder="Prenom")
+											td
+												input(type="text", ng-model="eleve.competences[0].score", ng-change="", placeholder="Comp1", style="width:20px")
+											td
+												input(type="text", ng-model="eleve.competences[1].score", ng-change="", placeholder="Comp2", style="width:20px")
+											td
+												input(type="text", ng-model="eleve.competences[2].score", ng-change="", placeholder="Comp3", style="width:20px")
+											td
+												input(type="text", ng-model="eleve.competences[3].score", ng-change="", placeholder="Comp4", style="width:20px")
+											td
+												input(type="text", ng-model="eleve.competences[4].score", ng-change="", placeholder="Comp5", style="width:20px")
